@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <title>新しい投稿</title>
+</head>
+<body>
+    <h1>新しい投稿を作成</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">投稿する</button>
+    </form>
+
+    <p><a href="{% url 'index' %}">← 一覧に戻る</a></p>
+</body>
+</html>
