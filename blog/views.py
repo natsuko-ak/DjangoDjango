@@ -19,3 +19,16 @@ def create(request):
     else:
         form = PostForm()
     return render(request, 'blog/create.html', {'form': form})
+
+def edit(request, post_id):
+    post = get_object_or_404(Post, pk=post_id) # 編集対象を取得
+
+    if request.method == 'POST':
+            form = PostForm(request.POST, instance=post) # ← 既存データで更新
+            if form.is_valid():
+                form.save()
+                return redirect('index')
+    else:
+        form = PostForm(instance=post)  # ← 初期値を表示
+        
+    return render(request, 'blog/edit.html', {'form': form})
