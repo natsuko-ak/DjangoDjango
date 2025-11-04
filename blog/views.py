@@ -32,3 +32,11 @@ def edit(request, post_id):
         form = PostForm(instance=post)  # ← 初期値を表示
         
     return render(request, 'blog/edit.html', {'form': form})
+
+# 既存の index, detail, create, edit に追加
+def delete(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if request.method == 'POST':
+        post.delete()
+        return redirect('index')
+    return render(request, 'blog/delete.html', {'post':post})
