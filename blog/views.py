@@ -14,8 +14,10 @@ def create(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('index')  # 投稿後に一覧ページへ戻る
+            post = form.save(commit=False) # まだ保存しない
+            post.author = request.user     # ログイン中のユーザーをセット
+            post.save()                    # 保存
+            return redirect('index')       # 投稿後に一覧ページへ戻る
     else:
         form = PostForm()
     return render(request, 'blog/create.html', {'form': form})

@@ -11,6 +11,7 @@
                 <a href="{% url 'detail' post.pk %}">{{ post.title }}</a>
             </h2>
             <p>{{ post.create_at }}</p>
+            <p>{{ post.author.username }}</p>
         {% endfor %}
     </body>
 </html>

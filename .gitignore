@@ -1,20 +1,26 @@
 # 仮想環境
+# これを上げないことで、Gitが軽くなる＆環境依存を防げている。
 divenv
 
 # Python
+# Pythonの自動生成ファイルなので不要
 __pycache__/
 *.py[cod]
 *.pyc
+**/__pycache__/
 
 # Django
+# collectstatic の出力やアップロードファイルを保護
 db.sqlite3
 /staticfiles/
 /media/
 
 # Environment
+# 秘密情報（SECRET_KEYなど）流出防止ができている
 .env
 
 # VSCode
+# エディタの設定をリポジトリに含めない
 .vscode/
 
 # macOS
